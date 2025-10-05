@@ -1,30 +1,60 @@
 {
-  "name": "my-vscode-extension",
-  "displayName": "My VSCode Extension",
-  "description": "A sample VSCode extension",
-  "version": "0.0.1",
+  "name": "code-visualizer",
+  "displayName": "Code Visualizer",
+  "description": "Visualize code structure and flow in visual diagrams",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
+    "Visualization",
     "Other"
   ],
   "activationEvents": [
-    "onCommand:myExtension.helloWorld"
+    "onCommand:codeVisualizer.showFlowChart",
+    "onCommand:codeVisualizer.showStructure",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "myExtension.helloWorld",
-        "title": "Hello World"
+        "command": "codeVisualizer.showFlowChart",
+        "title": "Show Code Flow Chart",
+        "category": "Code Visualizer"
+      },
+      {
+        "command": "codeVisualizer.showStructure",
+        "title": "Show Code Structure",
+        "category": "Code Visualizer"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeVisualizer.showFlowChart",
+          "group": "navigation",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeVisualizer.showStructure",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^6.0.0",
+    "acorn": "^8.10.0",
+    "acorn-walk": "^8.2.0"
   },
   "devDependencies": {
     "@types/vscode": "^1.74.0",
