@@ -1,47 +1,82 @@
 {
-  "name": "code-visualizer",
-  "displayName": "Code Visualizer",
-  "description": "Visualize code structure and flow in visual diagrams",
-  "version": "0.1.0",
+  "name": "code-lab",
+  "displayName": "Code Lab",
+  "description": "Interactive code execution and visualization - like Google Colab but for any file",
+  "version": "1.0.0",
+  "author": "Joshua Terranova",
+  "publisher": "joshua-terranova",
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
+    "Notebooks",
     "Visualization",
     "Other"
   ],
   "activationEvents": [
-    "onCommand:codeVisualizer.showFlowChart",
-    "onCommand:codeVisualizer.showStructure",
+    "onCommand:codeLab.executeSelection",
+    "onCommand:codeLab.executeFunction",
+    "onCommand:codeLab.showFlowChart",
+    "onCommand:codeLab.showStructure",
+    "onCommand:codeLab.inspectVariables",
     "onLanguage:javascript",
     "onLanguage:typescript",
-    "onLanguage:python",
-    "onLanguage:java"
+    "onLanguage:python"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "codeVisualizer.showFlowChart",
-        "title": "Show Code Flow Chart",
-        "category": "Code Visualizer"
+        "command": "codeLab.executeSelection",
+        "title": "▶️ Execute Selection",
+        "category": "Code Lab"
       },
       {
-        "command": "codeVisualizer.showStructure",
-        "title": "Show Code Structure",
-        "category": "Code Visualizer"
+        "command": "codeLab.executeFunction",
+        "title": "🚀 Execute Function",
+        "category": "Code Lab"
+      },
+      {
+        "command": "codeLab.showFlowChart",
+        "title": "📊 Show Flow Chart",
+        "category": "Code Lab"
+      },
+      {
+        "command": "codeLab.showStructure",
+        "title": "🌳 Show Structure",
+        "category": "Code Lab"
+      },
+      {
+        "command": "codeLab.inspectVariables",
+        "title": "🔍 Inspect Variables",
+        "category": "Code Lab"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "codeVisualizer.showFlowChart",
-          "group": "navigation",
+          "command": "codeLab.executeSelection",
+          "group": "execution",
           "when": "editorHasSelection"
         },
         {
-          "command": "codeVisualizer.showStructure",
-          "group": "navigation"
+          "command": "codeLab.executeFunction",
+          "group": "execution",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeLab.showFlowChart",
+          "group": "visualization",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeLab.showStructure",
+          "group": "visualization",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codeLab.inspectVariables",
+          "group": "inspection"
         }
       ]
     }
@@ -54,7 +89,10 @@
   "dependencies": {
     "@typescript-eslint/parser": "^6.0.0",
     "acorn": "^8.10.0",
-    "acorn-walk": "^8.2.0"
+    "acorn-walk": "^8.2.0",
+    "isolated-vm": "^4.6.1",
+    "chart.js": "^4.4.0",
+    "plotly.js": "^2.26.0"
   },
   "devDependencies": {
     "@types/vscode": "^1.74.0",

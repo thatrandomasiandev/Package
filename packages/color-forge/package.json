@@ -1,0 +1,18 @@
+{
+  "name": "@code-lab/color-forge",
+  "version": "1.0.0",
+  "description": "Customizable themes for Code Lab visualizations",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": ["themes", "styling", "colors"],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "typescript": "^4.9.4"
+  }
+}

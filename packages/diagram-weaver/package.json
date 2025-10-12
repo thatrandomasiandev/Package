@@ -1,0 +1,24 @@
+{
+  "name": "@code-lab/diagram-weaver",
+  "version": "1.0.0",
+  "description": "Mermaid.js integration for Code Lab diagrams",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": ["mermaid", "diagram", "flowchart"],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "dependencies": {
+    "@code-lab/syntax-forge": "^1.0.0",
+    "@code-lab/visual-flow": "^1.0.0",
+    "mermaid": "^10.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "typescript": "^4.9.4"
+  }
+}
+

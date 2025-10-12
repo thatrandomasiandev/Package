@@ -1,0 +1,130 @@
+# @code-lab/execution-engine
+
+Language-agnostic code execution runtime with sandboxing and resource monitoring.
+
+## Features
+
+- Sandboxed code execution
+- Memory and CPU monitoring
+- Timeout protection
+- Variable tracking
+- Multi-language support (JavaScript, TypeScript)
+- Console output capture
+
+## Installation
+
+```bash
+npm install @code-lab/execution-engine
+```
+
+## Usage
+
+### Basic Execution
+
+```typescript
+import { JavaScriptExecutor } from '@code-lab/execution-engine';
+
+const executor = new JavaScriptExecutor();
+
+const result = await executor.execute(`
+  const x = 10;
+  const y = 20;
+  console.log('Sum:', x + y);
+  return x + y;
+`, {
+  timeout: 5000,
+  memoryLimit: 128 // MB
+});
+
+console.log(result.output); // 30
+console.log(result.logs); // [{ type: 'log', message: 'Sum: 30', ... }]
+console.log(result.variables); // { x: 10, y: 20 }
+console.log(result.executionTime); // 5ms
+```
+
+### Using the Executor Registry
+
+```typescript
+import { executorRegistry } from '@code-lab/execution-engine';
+
+// Execute JavaScript
+const jsResult = await executorRegistry.execute(
+  'console.log("Hello from JS")',
+  'javascript'
+);
+
+// Execute TypeScript
+const tsResult = await executorRegistry.execute(
+  'const greeting: string = "Hello"; console.log(greeting);',
+  'typescript'
+);
+```
+
+### Custom Executor
+
+```typescript
+import { BaseExecutor, ExecutionOptions, ExecutionResult } from '@code-lab/execution-engine';
+
+class PythonExecutor extends BaseExecutor {
+  getLanguageId(): string {
+    return 'python';
+  }
+
+  async execute(code: string, options?: ExecutionOptions): Promise<ExecutionResult> {
+    // Implement Python execution logic
+    // ...
+  }
+}
+
+// Register custom executor
+executorRegistry.register('python', new PythonExecutor());
+```
+
+### Memory Monitoring
+
+```typescript
+import { MemoryMonitor } from '@code-lab/execution-engine';
+
+const monitor = new MemoryMonitor();
+monitor.start();
+
+// Your code execution here
+
+const stats = monitor.getStats();
+console.log(`Memory used: ${monitor.getDeltaMB().toFixed(2)} MB`);
+console.log(`Peak memory: ${monitor.getPeakMemoryMB().toFixed(2)} MB`);
+```
+
+## API Reference
+
+### ExecutionOptions
+
+```typescript
+interface ExecutionOptions {
+  timeout?: number;              // Timeout in ms (default: 5000)
+  memoryLimit?: number;          // Memory limit in MB (default: 128)
+  allowNetworkAccess?: boolean;  // Allow network access (default: false)
+  allowFileSystemAccess?: boolean; // Allow file system access (default: false)
+  globals?: Record<string, any>; // Additional global variables
+  language?: string;             // Language identifier
+}
+```
+
+### ExecutionResult
+
+```typescript
+interface ExecutionResult {
+  output: any;                   // Return value of the executed code
+  logs: LogEntry[];              // Console logs
+  errors: ErrorEntry[];          // Errors encountered
+  variables: Record<string, any>; // Variables created during execution
+  executionTime: number;         // Time taken in ms
+  memoryUsed: number;            // Memory used in bytes
+  success: boolean;              // Whether execution was successful
+}
+```
+
+## License
+
+MIT
+

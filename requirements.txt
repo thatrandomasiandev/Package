@@ -1,0 +1,37 @@
+# Code Lab Requirements
+# All packages created by Joshua Terranova
+
+# Core packages
+-e packages/syntax-forge
+-e packages/runtime-spark
+-e packages/visual-flow
+
+# Language support
+-e packages/python-lens
+-e packages/java-lens
+-e packages/rust-lens
+
+# Visualization extensions
+-e packages/diagram-weaver
+-e packages/graph-dynamics
+-e packages/data-pulse
+
+# Developer tools
+-e packages/spec-runner
+-e packages/performance-lens
+-e packages/step-tracer
+
+# UI & Theming
+-e packages/color-forge
+-e packages/ui-forge
+
+# Integrations
+-e packages/notebook-bridge
+-e packages/version-chronicle
+-e packages/code-mentor
+
+# Utilities
+-e packages/snippet-vault
+-e packages/output-forge
+-e packages/live-sync
+

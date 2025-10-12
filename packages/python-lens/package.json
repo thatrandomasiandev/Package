@@ -1,0 +1,23 @@
+{
+  "name": "@code-lab/python-lens",
+  "version": "1.0.0",
+  "description": "Python parser and executor for Code Lab",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": ["python", "parser", "ast"],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "dependencies": {
+    "@code-lab/syntax-forge": "^1.0.0",
+    "@code-lab/runtime-spark": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "typescript": "^4.9.4"
+  }
+}
+

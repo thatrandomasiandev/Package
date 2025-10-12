@@ -1,0 +1,29 @@
+{
+  "name": "@code-lab/runtime-spark",
+  "version": "1.0.0",
+  "description": "Language-agnostic code execution runtime with sandboxing",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": [
+    "execution",
+    "runtime",
+    "sandbox",
+    "code-execution"
+  ],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "dependencies": {
+    "@code-lab/syntax-forge": "^1.0.0",
+    "isolated-vm": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "typescript": "^4.9.4"
+  }
+}
+

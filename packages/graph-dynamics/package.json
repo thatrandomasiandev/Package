@@ -1,0 +1,24 @@
+{
+  "name": "@code-lab/graph-dynamics",
+  "version": "1.0.0",
+  "description": "D3.js visualizations for Code Lab",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": ["d3", "visualization", "graphs"],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "dependencies": {
+    "@code-lab/syntax-forge": "^1.0.0",
+    "@code-lab/visual-flow": "^1.0.0",
+    "d3": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/d3": "^7.4.0",
+    "typescript": "^4.9.4"
+  }
+}

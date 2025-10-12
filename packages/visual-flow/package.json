@@ -1,0 +1,28 @@
+{
+  "name": "@code-lab/visual-flow",
+  "version": "1.0.0",
+  "description": "Visualization generators for code structures and flow charts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest"
+  },
+  "keywords": [
+    "visualization",
+    "flowchart",
+    "code-structure",
+    "diagram"
+  ],
+  "author": "Joshua Terranova",
+  "license": "MIT",
+  "dependencies": {
+    "@code-lab/syntax-forge": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "typescript": "^4.9.4"
+  }
+}
+

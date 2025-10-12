@@ -1,11 +1,11 @@
 import { CodeNode } from './codeParser';
 
 export class FlowChartGenerator {
-    generateFlowChart(ast: CodeNode, fileName: string): string {
+    generateFlowChart(ast: CodeNode, fileName: string, startLine?: number, endLine?: number): string {
         const nodes = this.extractFlowNodes(ast);
         const connections = this.extractConnections(ast);
         
-        return this.generateHTML(nodes, connections, fileName, 'Flow Chart');
+        return this.generateHTML(nodes, connections, fileName, 'Code Flow Chart', startLine, endLine);
     }
 
     private extractFlowNodes(ast: CodeNode): FlowNode[] {
@@ -133,125 +133,236 @@ export class FlowChartGenerator {
         return '';
     }
 
-    private generateHTML(nodes: FlowNode[], connections: Connection[], fileName: string, title: string): string {
+    private generateHTML(nodes: FlowNode[], connections: Connection[], fileName: string, title: string, startLine?: number, endLine?: number): string {
+        const lineRange = startLine && endLine ? `Lines ${startLine}-${endLine}` : '';
+        
         return `
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${title} - ${fileName}</title>
+    <title>${title}</title>
     <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--vscode-font-family, 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif);
+            font-size: var(--vscode-font-size, 13px);
+            font-weight: var(--vscode-font-weight, 400);
+            line-height: 1.4;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
+            background-color: var(--vscode-editor-background, #1e1e1e);
+            color: var(--vscode-editor-foreground, #d4d4d4);
+            overflow: hidden;
         }
+        
+        .webview-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: var(--vscode-titleBar-activeBackground, #3c3c3c);
+            border-bottom: 1px solid var(--vscode-titleBar-border, #2d2d30);
+            padding: 8px 16px;
+            flex-shrink: 0;
         }
-        .header h1 {
+        
+        .header-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--vscode-titleBar-activeForeground, #ffffff);
             margin: 0;
-            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .header p {
-            margin: 5px 0 0 0;
-            opacity: 0.9;
+        
+        .header-subtitle {
+            font-size: 12px;
+            color: var(--vscode-descriptionForeground, #cccccc);
+            margin: 2px 0 0 0;
         }
-        .diagram-container {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            min-height: 400px;
+        
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
+        
+        .diagram-panel {
+            flex: 1;
+            background-color: var(--vscode-editor-background, #1e1e1e);
+            border: 1px solid var(--vscode-panel-border, #3c3c3c);
+            margin: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .diagram-content {
+            padding: 16px;
+            height: 100%;
+            overflow: auto;
+        }
+        
         .mermaid {
-            text-align: center;
+            background: var(--vscode-editor-background, #1e1e1e);
+            border-radius: 4px;
+            padding: 16px;
         }
-        .legend {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 4px solid #667eea;
+        
+        .legend-panel {
+            background-color: var(--vscode-panel-background, #252526);
+            border-top: 1px solid var(--vscode-panel-border, #3c3c3c);
+            padding: 12px 16px;
+            flex-shrink: 0;
         }
-        .legend h3 {
-            margin-top: 0;
-            color: #333;
+        
+        .legend-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--vscode-foreground, #d4d4d4);
+            margin: 0 0 8px 0;
         }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
         .legend-item {
-            display: inline-block;
-            margin: 5px 15px 5px 0;
-            font-size: 14px;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            color: var(--vscode-foreground, #d4d4d4);
         }
+        
         .legend-color {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border-radius: 3px;
-            margin-right: 8px;
-            vertical-align: middle;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 6px;
+            border: 1px solid var(--vscode-panel-border, #3c3c3c);
         }
+        
         .error-message {
-            background: #ffebee;
-            color: #c62828;
-            padding: 15px;
-            border-radius: 6px;
-            border-left: 4px solid #f44336;
-            margin: 20px 0;
+            background-color: var(--vscode-inputValidation-errorBackground, #5a1d1d);
+            color: var(--vscode-inputValidation-errorForeground, #f48771);
+            border: 1px solid var(--vscode-inputValidation-errorBorder, #be1100);
+            padding: 12px;
+            border-radius: 4px;
+            margin: 16px;
+            font-size: 12px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--vscode-descriptionForeground, #cccccc);
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .empty-state-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* VSCode scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--vscode-scrollbarSlider-background, #2d2d30);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--vscode-scrollbarSlider-background, #464647);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--vscode-scrollbarSlider-hoverBackground, #5a5d5e);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>${title}</h1>
-        <p>File: ${fileName}</p>
-    </div>
-    
-    <div class="diagram-container">
-        ${this.generateMermaidDiagram(nodes, connections)}
-    </div>
-    
-    <div class="legend">
-        <h3>Legend</h3>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #4CAF50;"></span>
-            Functions & Methods
+    <div class="webview-container">
+        <div class="header">
+            <div class="header-title">${title}</div>
+            <div class="header-subtitle">${fileName}${lineRange ? ` • ${lineRange}` : ''}</div>
         </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #2196F3;"></span>
-            Classes
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #FF9800;"></span>
-            Conditions
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #9C27B0;"></span>
-            Loops
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #607D8B;"></span>
-            Variables
-        </div>
-        <div class="legend-item">
-            <span class="legend-color" style="background-color: #F44336;"></span>
-            Returns
+        
+        <div class="content">
+            <div class="diagram-panel">
+                <div class="diagram-content">
+                    ${this.generateMermaidDiagram(nodes, connections)}
+                </div>
+            </div>
+            
+            <div class="legend-panel">
+                <div class="legend-title">Legend</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #4CAF50;"></span>
+                        Functions
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #2196F3;"></span>
+                        Classes
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #FF9800;"></span>
+                        Conditions
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #9C27B0;"></span>
+                        Loops
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #607D8B;"></span>
+                        Variables
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #F44336;"></span>
+                        Returns
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         mermaid.initialize({
             startOnLoad: true,
-            theme: 'default',
+            theme: 'dark',
             flowchart: {
                 useMaxWidth: true,
-                htmlLabels: true
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            themeVariables: {
+                primaryColor: '#007acc',
+                primaryTextColor: '#d4d4d4',
+                primaryBorderColor: '#3c3c3c',
+                lineColor: '#3c3c3c',
+                sectionBkgColor: '#2d2d30',
+                altSectionBkgColor: '#252526',
+                gridColor: '#3c3c3c',
+                secondaryColor: '#007acc',
+                tertiaryColor: '#1e1e1e'
             }
         });
     </script>
