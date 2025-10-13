@@ -1,5 +1,5 @@
 """
-Ui Forge
+UI Forge
 Original implementation by Joshua Terranova
 """
 
@@ -9,9 +9,7 @@ setup(
     name="ui-forge",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Ui Forge for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production UI component generation with Jinja2",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -24,5 +22,7 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.8",
-    install_requires=[],
+    install_requires=[
+        "Jinja2>=3.0.0",
+    ],
 )

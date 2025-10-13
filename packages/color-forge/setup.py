@@ -9,9 +9,7 @@ setup(
     name="color-forge",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Color Forge for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production theme and color generation with CSS output",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
