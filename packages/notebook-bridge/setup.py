@@ -9,9 +9,7 @@ setup(
     name="notebook-bridge",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Notebook Bridge for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production Jupyter notebook integration with nbformat",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -24,5 +22,7 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.8",
-    install_requires=[],
+    install_requires=[
+        "nbformat>=5.0.0",
+    ],
 )
