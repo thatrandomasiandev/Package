@@ -1,0 +1,8 @@
+README.md
+setup.py
+diagram_weaver/__init__.py
+diagram_weaver/diagram_generator.py
+diagram_weaver.egg-info/PKG-INFO
+diagram_weaver.egg-info/SOURCES.txt
+diagram_weaver.egg-info/dependency_links.txt
+diagram_weaver.egg-info/top_level.txt

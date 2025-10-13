@@ -1,0 +1,8 @@
+README.md
+setup.py
+performance_lens/__init__.py
+performance_lens/profiler.py
+performance_lens.egg-info/PKG-INFO
+performance_lens.egg-info/SOURCES.txt
+performance_lens.egg-info/dependency_links.txt
+performance_lens.egg-info/top_level.txt

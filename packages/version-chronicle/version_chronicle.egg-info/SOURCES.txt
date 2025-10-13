@@ -1,0 +1,9 @@
+README.md
+setup.py
+version_chronicle/__init__.py
+version_chronicle/git_integration.py
+version_chronicle.egg-info/PKG-INFO
+version_chronicle.egg-info/SOURCES.txt
+version_chronicle.egg-info/dependency_links.txt
+version_chronicle.egg-info/requires.txt
+version_chronicle.egg-info/top_level.txt

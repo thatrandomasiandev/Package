@@ -1,0 +1,9 @@
+README.md
+setup.py
+notebook_bridge/__init__.py
+notebook_bridge/converter.py
+notebook_bridge.egg-info/PKG-INFO
+notebook_bridge.egg-info/SOURCES.txt
+notebook_bridge.egg-info/dependency_links.txt
+notebook_bridge.egg-info/requires.txt
+notebook_bridge.egg-info/top_level.txt

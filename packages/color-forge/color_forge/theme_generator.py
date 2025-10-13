@@ -4,7 +4,7 @@ Generates CSS themes and color schemes
 Original implementation by Joshua Terranova
 """
 
-from typing import List, Dict, Optional, Tuple, Literal
+from typing import List, Dict, Optional, Tuple, Literal, Any
 from dataclasses import dataclass
 import colorsys
 

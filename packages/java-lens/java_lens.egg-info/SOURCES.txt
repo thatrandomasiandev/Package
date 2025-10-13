@@ -1,0 +1,9 @@
+README.md
+setup.py
+java_lens/__init__.py
+java_lens/analyzer.py
+java_lens.egg-info/PKG-INFO
+java_lens.egg-info/SOURCES.txt
+java_lens.egg-info/dependency_links.txt
+java_lens.egg-info/requires.txt
+java_lens.egg-info/top_level.txt

@@ -13,9 +13,13 @@ from .visualizer import (
     quick_plot
 )
 
+# Alias for convenience
+DataVisualizer = MatplotlibChart
+
 __all__ = [
     "MatplotlibChart",
     "PlotlyChart",
     "ChartConfig",
     "quick_plot",
+    "DataVisualizer",
 ]

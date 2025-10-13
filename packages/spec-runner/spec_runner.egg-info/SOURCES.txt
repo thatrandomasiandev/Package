@@ -1,0 +1,8 @@
+README.md
+setup.py
+spec_runner/__init__.py
+spec_runner/test_runner.py
+spec_runner.egg-info/PKG-INFO
+spec_runner.egg-info/SOURCES.txt
+spec_runner.egg-info/dependency_links.txt
+spec_runner.egg-info/top_level.txt

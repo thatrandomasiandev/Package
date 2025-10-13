@@ -1,0 +1,8 @@
+README.md
+setup.py
+python_lens/__init__.py
+python_lens/analyzer.py
+python_lens.egg-info/PKG-INFO
+python_lens.egg-info/SOURCES.txt
+python_lens.egg-info/dependency_links.txt
+python_lens.egg-info/top_level.txt
