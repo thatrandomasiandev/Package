@@ -21,30 +21,30 @@ Code Lab is a comprehensive suite of tools for code analysis, execution, visuali
 
 ## 🚀 Quick Start
 
-### Installation (Choose One Method)
+### Installation
 
-**Option 1: One-Line Install (Recommended)**
 ```bash
-curl -sSL https://raw.githubusercontent.com/thatrandomasiandev/Package/main/install.sh | bash
-```
-
-**Option 2: From GitHub (any terminal)**
-```bash
-pip install git+https://github.com/thatrandomasiandev/Package.git#subdirectory=packages/python-lens
-pip install git+https://github.com/thatrandomasiandev/Package.git#subdirectory=packages/visual-flow
-# See REMOTE_INSTALLATION.md for all packages
-```
-
-**Option 3: Local Development**
-```bash
+# 1. Clone the repository
 git clone https://github.com/thatrandomasiandev/Package.git
 cd Package
+
+# 2. Install any package you want
 pip install -e packages/syntax-forge
-# Repeat for each package
+pip install -e packages/python-lens
+pip install -e packages/visual-flow
+pip install -e packages/runtime-spark
+pip install -e packages/data-pulse
+# ... install any packages you need
 ```
 
-**Option 4: Publish to PyPI (for maintainers)**
-See `PUBLISH_TO_PYPI.md` for instructions to make packages available via simple `pip install package-name`
+**Install all packages at once:**
+```bash
+pip install -e packages/syntax-forge -e packages/python-lens -e packages/visual-flow \
+  -e packages/runtime-spark -e packages/data-pulse -e packages/performance-lens \
+  -e packages/graph-dynamics -e packages/diagram-weaver -e packages/java-lens \
+  -e packages/spec-runner -e packages/step-tracer -e packages/color-forge \
+  -e packages/ui-forge -e packages/notebook-bridge -e packages/version-chronicle
+```
 
 ### Basic Usage
 
