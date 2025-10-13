@@ -9,9 +9,7 @@ setup(
     name="java-lens",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Java Lens for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Java code analysis using javalang",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -24,5 +22,7 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.8",
-    install_requires=[],
+    install_requires=[
+        "javalang>=0.13.0",
+    ],
 )
