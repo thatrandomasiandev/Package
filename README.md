@@ -21,20 +21,30 @@ Code Lab is a comprehensive suite of tools for code analysis, execution, visuali
 
 ## 🚀 Quick Start
 
-### Installation
+### Installation (Choose One Method)
 
+**Option 1: One-Line Install (Recommended)**
 ```bash
-# Clone or download this repository
-cd "Code Lab"
-
-# Run the installation script
-./install_all.sh  # macOS/Linux
-# OR
-install_all.bat   # Windows
-
-# Or use pip directly
-pip install -r requirements.txt
+curl -sSL https://raw.githubusercontent.com/thatrandomasiandev/Package/main/install.sh | bash
 ```
+
+**Option 2: From GitHub (any terminal)**
+```bash
+pip install git+https://github.com/thatrandomasiandev/Package.git#subdirectory=packages/python-lens
+pip install git+https://github.com/thatrandomasiandev/Package.git#subdirectory=packages/visual-flow
+# See REMOTE_INSTALLATION.md for all packages
+```
+
+**Option 3: Local Development**
+```bash
+git clone https://github.com/thatrandomasiandev/Package.git
+cd Package
+pip install -e packages/syntax-forge
+# Repeat for each package
+```
+
+**Option 4: Publish to PyPI (for maintainers)**
+See `PUBLISH_TO_PYPI.md` for instructions to make packages available via simple `pip install package-name`
 
 ### Basic Usage
 
