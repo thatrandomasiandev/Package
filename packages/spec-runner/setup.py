@@ -9,9 +9,7 @@ setup(
     name="spec-runner",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Spec Runner for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production test framework similar to pytest",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
