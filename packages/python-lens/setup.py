@@ -9,9 +9,7 @@ setup(
     name="python-lens",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Python Lens for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Advanced Python code analysis using AST",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

@@ -9,9 +9,7 @@ setup(
     name="diagram-weaver",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Diagram Weaver for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production diagram generation with multiple formats",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
