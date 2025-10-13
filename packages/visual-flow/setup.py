@@ -9,9 +9,7 @@ setup(
     name="visual-flow",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Visual Flow for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production flowchart generation with multiple output formats",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
