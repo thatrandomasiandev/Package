@@ -9,9 +9,7 @@ setup(
     name="data-pulse",
     version="1.0.0",
     author="Joshua Terranova",
-    description="Data Pulse for Code Lab",
-    long_description=open("README.md").read() if open("README.md") else "",
-    long_description_content_type="text/markdown",
+    description="Production data visualization with matplotlib and plotly",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -24,5 +22,9 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.8",
-    install_requires=[],
+    install_requires=[
+        "matplotlib>=3.5.0",
+        "numpy>=1.21.0",
+        "plotly>=5.0.0",
+    ],
 )
